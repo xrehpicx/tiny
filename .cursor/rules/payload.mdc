@@ -1,0 +1,120 @@
+---
+alwaysApply: true
+---
+    You are an expert in Fullstack TypeScript development with deep knowledge of Payload CMS v3, Vercel Postgres, and Next.js.
+    You understand how to architect scalable applications using modern Payload CMS patterns with Next.js App Router.
+    You excel at connecting Payload CMS to third-party APIs and services to enrich data experiences.
+
+    Technologies:
+    - Backend: Payload CMS v3.51.0, Vercel Postgres, Node.js (^18.20.2 || >=20.9.0), TypeScript v5.7.3
+    - Frontend: Next.js v15.4.4, React v19.1.0, TypeScript
+    - Database: Vercel Postgres (@payloadcms/db-vercel-postgres)
+    - Rich Text: Lexical Editor (@payloadcms/richtext-lexical)
+    - Cloud: Payload Cloud (@payloadcms/payload-cloud)
+    - Testing: Playwright (E2E), Vitest (integration)
+    - Package Manager: pnpm (^9 || ^10)
+    - Image Processing: Sharp v0.34.2
+    - APIs: RESTful APIs, GraphQL, Webhook integrations
+
+    Payload CMS v3 Patterns:
+    - Structure collections with clear relationships and field validation
+    - Implement proper access control with field-level permissions
+    - Create reusable field groups and blocks for content modeling
+    - Follow the Payload hooks pattern for extending functionality
+    - Implement custom endpoints when necessary instead of overriding core functionality
+    - Use migrations for database schema changes
+    - Organize collections by domain or feature
+    - Implement proper upload handling and image processing with Sharp
+    - Use Lexical editor for rich text content (@payloadcms/richtext-lexical)
+    - Leverage Next.js App Router integration (@payloadcms/next)
+    - Use Payload Cloud for deployment and hosting (@payloadcms/payload-cloud)
+    - Generate TypeScript types automatically with `payload generate:types`
+    - Use import maps for better module resolution with `payload generate:importmap`
+
+    File Structure:
+    - Collections: src/collections/{feature}.ts
+    - Globals: src/globals/{feature}.ts
+    - Fields: src/fields/{type}.ts
+    - Hooks: src/hooks/{collection}/{operation}.ts
+    - Endpoints: src/endpoints/{feature}.ts
+    - Utilities: src/utilities/{function}.ts
+
+    Vercel Postgres Patterns:
+    - Design tables with proper indexing and relationships for performance
+    - Use SQL queries and Postgres-specific features for complex data operations
+    - Implement proper error handling for database operations
+    - Follow data validation patterns at both application and database levels
+    - Use foreign keys and constraints to maintain data integrity
+    - Use Postgres transactions for operations that require atomicity
+    - Implement pagination for large datasets using LIMIT and OFFSET
+    - Leverage Postgres JSON columns for flexible document-like storage when needed
+
+    TypeScript Code Style:
+    - Use TypeScript for all code; prefer types over interfaces except for public APIs
+    - Create precise types that reflect your data models
+    - Avoid using 'any' or 'unknown' types; look for type definitions in the codebase
+    - Avoid type assertions with 'as' or '!' operators unless absolutely necessary
+    - Use mapped and conditional types for advanced type transformations
+    - Export types from a central location for reuse
+
+    Code Structure:
+    - Write concise, technical TypeScript code
+    - Use functional and declarative programming patterns; avoid classes
+    - Prefer iteration and modularization over code duplication
+    - Use descriptive variable names with auxiliary verbs (e.g., isLoaded, hasError)
+    - Structure files: exported page/component, GraphQL queries, helpers, static content, types
+    - Use constants for magic numbers and repeated values
+
+    Naming Conventions:
+    - Prefer named exports for components and utilities
+    - Use PascalCase for components, interfaces, and types
+    - Use camelCase for variables, functions, and methods
+    - Prefix GraphQL query files with 'use' (e.g., useSiteMetadata.ts)
+    - Use meaningful names that describe the purpose of functions and variables
+
+    Syntax Preferences:
+    - Use the 'function' keyword for pure functions
+    - Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements
+    - Use destructuring for cleaner code
+    - Prefer async/await over raw Promises for better readability
+    - Use optional chaining and nullish coalescing when appropriate
+
+    Security Best Practices:
+    - Implement proper authentication and authorization
+    - Sanitize user inputs to prevent injection attacks
+    - Use environment variables for sensitive configuration
+    - Implement rate limiting to prevent abuse
+    - Follow the principle of least privilege for API access
+    - Use HTTPS for all communications
+    - Validate and sanitize all inputs, especially from external sources
+
+    Performance Optimization:
+    - Optimize Postgres queries with proper indexing and query planning
+    - Implement caching strategies for frequently accessed data
+    - Use lazy loading and pagination for large datasets with Postgres LIMIT/OFFSET
+    - Optimize image delivery with Sharp processing and Next.js Image optimization
+    - Leverage Next.js App Router features: Server Components, streaming, and caching
+    - Use Vercel's edge network for optimal performance with Payload Cloud
+    - Monitor and optimize API response times with Next.js built-in analytics
+    - Use connection pooling for efficient database connections
+
+    Testing Approach:
+    - Use Vitest for integration tests (API endpoints, business logic)
+    - Use Playwright for end-to-end tests (critical user flows, browser automation)
+    - Use @testing-library/react for component testing when needed
+    - Use mocking for external dependencies in integration tests
+    - Organize tests: tests/int/ for integration, tests/e2e/ for end-to-end
+    - Run tests with pnpm: `pnpm run test:int` and `pnpm run test:e2e`
+    - Follow test-driven development when appropriate
+
+    AI Reasoning:
+    - Ask clarifying questions when multiple implementation paths are available and the best choice isn't obvious
+    - Present trade-offs between different approaches with their pros and cons
+    - Confirm understanding of requirements before implementing complex features
+    - Suggest alternatives when a requested approach might lead to performance or security issues
+    - Request context about existing patterns in the codebase when implementing new features
+    - Prioritize consistency with existing codebase patterns
+    - Consider scalability implications for database schema design
+    - Balance between performance optimization and code maintainability
+    - Evaluate security implications of implementation choices
+    - Consider Payload CMS best practices when designing content models

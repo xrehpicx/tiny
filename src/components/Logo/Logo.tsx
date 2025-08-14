@@ -5,25 +5,61 @@ interface Props {
   className?: string
   loading?: 'lazy' | 'eager'
   priority?: 'auto' | 'high' | 'low'
+  variant?: 'auto' | 'light' | 'dark'
 }
 
 export const Logo = (props: Props) => {
-  const { loading: loadingFromProps, priority: priorityFromProps, className } = props
+  const {
+    loading: loadingFromProps,
+    priority: priorityFromProps,
+    className,
+    variant = 'auto',
+  } = props
 
   const loading = loadingFromProps || 'lazy'
   const priority = priorityFromProps || 'low'
 
+  /* eslint-disable @next/next/no-img-element */
+  if (variant === 'dark') {
+    return (
+      <img
+        alt="Tinyleaf Wordmark"
+        width={220}
+        height={40}
+        loading={loading}
+        fetchPriority={priority}
+        decoding="async"
+        className={clsx('max-w-[14rem] w-full h-[40px]', className)}
+        src="/tiny-wordmark-transparent-white.png"
+      />
+    )
+  }
+
+  if (variant === 'light') {
+    return (
+      <img
+        alt="Tinyleaf Wordmark"
+        width={220}
+        height={40}
+        loading={loading}
+        fetchPriority={priority}
+        decoding="async"
+        className={clsx('max-w-[14rem] w-full h-[40px]', className)}
+        src="/tiny-wordmark-transparent-black.png"
+      />
+    )
+  }
+
   return (
-    /* eslint-disable @next/next/no-img-element */
     <img
-      alt="Payload Logo"
-      width={193}
-      height={34}
+      alt="Tinyleaf Wordmark"
+      width={220}
+      height={40}
       loading={loading}
       fetchPriority={priority}
       decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-light.svg"
+      className={clsx('max-w-[14rem] w-full h-[40px]', className)}
+      src="/tiny-wordmark-transparent-black.png"
     />
   )
 }

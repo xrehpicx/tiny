@@ -9,12 +9,16 @@ import { imageHero1 } from './image-hero-1'
 import { post1 } from './post-1'
 import { post2 } from './post-2'
 import { post3 } from './post-3'
+import { product1 } from './product-1'
+import { product2 } from './product-2'
+import { product3 } from './product-3'
 
 const collections: CollectionSlug[] = [
   'categories',
   'media',
   'pages',
   'posts',
+  'products',
   'forms',
   'form-submissions',
   'search',
@@ -95,7 +99,19 @@ export const seed = async ({
     ),
   ])
 
-  const [demoAuthor, image1Doc, image2Doc, image3Doc, imageHomeDoc] = await Promise.all([
+  const [
+    demoAuthor,
+    image1Doc,
+    image2Doc,
+    image3Doc,
+    imageHomeDoc,
+    technologyCategory,
+    newsCategory,
+    financeCategory,
+    designCategory,
+    softwareCategory,
+    engineeringCategory,
+  ] = await Promise.all([
     payload.create({
       collection: 'users',
       data: {
@@ -257,6 +273,45 @@ export const seed = async ({
     },
   })
 
+  payload.logger.info(`— Seeding products...`)
+
+  const allCategories = [
+    technologyCategory,
+    newsCategory,
+    financeCategory,
+    designCategory,
+    softwareCategory,
+    engineeringCategory,
+  ]
+
+  // Create products with proper slugs
+  await Promise.all([
+    payload.create({
+      collection: 'products',
+      depth: 0,
+      context: {
+        disableRevalidate: true,
+      },
+      data: product1({ heroImage: image1Doc, author: demoAuthor, categories: allCategories }),
+    }),
+    payload.create({
+      collection: 'products',
+      depth: 0,
+      context: {
+        disableRevalidate: true,
+      },
+      data: product2({ heroImage: image2Doc, author: demoAuthor, categories: allCategories }),
+    }),
+    payload.create({
+      collection: 'products',
+      depth: 0,
+      context: {
+        disableRevalidate: true,
+      },
+      data: product3({ heroImage: image3Doc, author: demoAuthor, categories: allCategories }),
+    }),
+  ])
+
   payload.logger.info(`— Seeding contact form...`)
 
   const contactForm = await payload.create({
@@ -292,6 +347,13 @@ export const seed = async ({
               type: 'custom',
               label: 'Posts',
               url: '/posts',
+            },
+          },
+          {
+            link: {
+              type: 'custom',
+              label: 'Products',
+              url: '/products',
             },
           },
           {
