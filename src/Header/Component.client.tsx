@@ -25,9 +25,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const effectiveTheme = headerTheme ?? 'light'
 
   return (
-    <header className="container relative z-20   ">
-      <div className="py-8 flex justify-between">
-        <Link href="/">
+    <header className="container relative z-20">
+      <div className="py-8 flex justify-between items-center">
+        <Link href="/" className="flex-shrink-0">
           <Logo loading="eager" priority="high" variant="light" />
         </Link>
         <HeaderNav data={data} />

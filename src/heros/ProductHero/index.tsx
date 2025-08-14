@@ -3,11 +3,12 @@ import React from 'react'
 import type { Product } from '@/payload-types'
 
 import { Media } from '@/components/Media'
+import RichText from '@/components/RichText'
 
 export const ProductHero: React.FC<{
   product: Product
 }> = ({ product }) => {
-  const { categories, heroImage, title, price, meta } = product
+  const { categories, heroImage, title, price, meta, content } = product
 
   const formattedPrice =
     typeof price === 'number'
@@ -15,7 +16,7 @@ export const ProductHero: React.FC<{
       : undefined
 
   return (
-    <div className="container py-16">
+    <div className="container">
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
         {/* Left Column - Product Info */}
         <div className="space-y-6">
@@ -44,12 +45,19 @@ export const ProductHero: React.FC<{
 
           {/* Price */}
           {formattedPrice && (
-            <div className="text-3xl lg:text-4xl font-semibold text-primary">{formattedPrice}</div>
+            <div className="text-xl lg:text-2xl font-semibold text-primary">{formattedPrice}</div>
           )}
 
           {/* Description */}
           {meta?.description && (
             <div className="text-lg text-muted-foreground leading-relaxed">{meta.description}</div>
+          )}
+
+          {/* Content */}
+          {content && (
+            <div className="prose prose-lg dark:prose-invert max-w-none">
+              <RichText data={content} enableGutter={false} />
+            </div>
           )}
         </div>
 

@@ -22,7 +22,7 @@ export async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
           {/* Company Info */}
           <div className="space-y-4">
-            <Link className="flex items-center" href="/">
+            <Link className="flex items-center justify-start" href="/">
               <Logo variant="dark" />
             </Link>
             {siteData?.description && (
@@ -73,7 +73,7 @@ export async function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-4 border-t border-gray-700 text-center">
+        <div className="mt-8 pt-4 border-t border-gray-700 text-left">
           <p className="text-xs text-gray-400">{copyright}</p>
         </div>
       </div>

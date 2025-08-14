@@ -24,7 +24,7 @@ export const Logo = (props: Props) => {
     return (
       <img
         alt="Tinyleaf Wordmark"
-        width={220}
+        width={120}
         height={40}
         loading={loading}
         fetchPriority={priority}
@@ -39,7 +39,7 @@ export const Logo = (props: Props) => {
     return (
       <img
         alt="Tinyleaf Wordmark"
-        width={220}
+        width={120}
         height={40}
         loading={loading}
         fetchPriority={priority}

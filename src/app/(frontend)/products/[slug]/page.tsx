@@ -9,7 +9,6 @@ import React from 'react'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import PageClient from './page.client'
-import RichText from '@/components/RichText'
 import { generateMeta } from '@/utilities/generateMeta'
 import { ProductHero } from '@/heros/ProductHero'
 
@@ -28,7 +27,7 @@ export default async function Product({ params: paramsPromise }: Args) {
   if (!product) return <PayloadRedirects url={url} />
 
   return (
-    <article className="pt-16 pb-16">
+    <article className="">
       <PageClient />
 
       <PayloadRedirects disableNotFound url={url} />
@@ -36,18 +35,6 @@ export default async function Product({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <ProductHero product={product} />
-
-      {product.content && (
-        <div className="container py-12">
-          <div className="max-w-4xl mx-auto">
-            <RichText
-              className="prose prose-lg dark:prose-invert max-w-none"
-              data={product.content}
-              enableGutter={false}
-            />
-          </div>
-        </div>
-      )}
     </article>
   )
 }
