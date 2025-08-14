@@ -29,7 +29,7 @@ export const Logo = (props: Props) => {
         loading={loading}
         fetchPriority={priority}
         decoding="async"
-        className={clsx('max-w-[14rem] w-full h-[40px]', className)}
+        className={clsx('max-w-[14rem] h-[40px] object-contain', className)}
         src="/tiny-wordmark-transparent-white.png"
       />
     )
@@ -44,7 +44,7 @@ export const Logo = (props: Props) => {
         loading={loading}
         fetchPriority={priority}
         decoding="async"
-        className={clsx('max-w-[14rem] w-full h-[40px]', className)}
+        className={clsx('max-w-[14rem] h-[40px] object-contain', className)}
         src="/tiny-wordmark-transparent-black.png"
       />
     )

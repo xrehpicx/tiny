@@ -4,6 +4,7 @@ import type { Media, Page, Post, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
+import { getCachedGlobal } from './getGlobals'
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
@@ -24,26 +25,45 @@ export const generateMeta = async (args: {
 }): Promise<Metadata> => {
   const { doc } = args
 
+  const siteData = await getCachedGlobal('site', 1)()
+  const siteName = siteData?.title || 'Tiny Leaf Co.'
+  const siteDescription = siteData?.description || 'Handcrafted, artistic, and symbolic home décor planters and accessories'
+  const keywords = siteData?.meta?.keywords || 'planters, home decor, terracotta, handcrafted, artistic, symbolic'
+
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | Payload Website Template'
-    : 'Payload Website Template'
+    ? `${doc.meta.title} | ${siteName}`
+    : siteName
+
+  const description = doc?.meta?.description || siteDescription
 
   return {
-    description: doc?.meta?.description,
+    title,
+    description,
+    keywords,
+    authors: [{ name: siteData?.meta?.author || siteName }],
+    creator: siteName,
+    publisher: siteName,
     openGraph: mergeOpenGraph({
-      description: doc?.meta?.description || '',
+      title,
+      description,
       images: ogImage
         ? [
             {
               url: ogImage,
+              alt: title,
             },
           ]
         : undefined,
-      title,
       url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
+      siteName,
     }),
-    title,
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      creator: siteData?.social?.twitter || '@tinyleaf',
+    },
   }
 }

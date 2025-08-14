@@ -105,10 +105,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    site: Site;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    site: SiteSelect<false> | SiteSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1677,6 +1679,37 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Display contact information in the footer
+   */
+  showContactInfo?: boolean | null;
+  copyright?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site".
+ */
+export interface Site {
+  id: number;
+  title: string;
+  description: string;
+  tagline?: string | null;
+  contact: {
+    person: string;
+    phone: string;
+    email: string;
+  };
+  social?: {
+    twitter?: string | null;
+    instagram?: string | null;
+    facebook?: string | null;
+  };
+  meta?: {
+    keywords?: string | null;
+    author?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1721,6 +1754,40 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
             };
         id?: T;
+      };
+  showContactInfo?: T;
+  copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site_select".
+ */
+export interface SiteSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  tagline?: T;
+  contact?:
+    | T
+    | {
+        person?: T;
+        phone?: T;
+        email?: T;
+      };
+  social?:
+    | T
+    | {
+        twitter?: T;
+        instagram?: T;
+        facebook?: T;
+      };
+  meta?:
+    | T
+    | {
+        keywords?: T;
+        author?: T;
       };
   updatedAt?: T;
   createdAt?: T;

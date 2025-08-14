@@ -25,6 +25,19 @@ export const Footer: GlobalConfig = {
         },
       },
     },
+    {
+      name: 'showContactInfo',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        description: 'Display contact information in the footer',
+      },
+    },
+    {
+      name: 'copyright',
+      type: 'text',
+      defaultValue: '© 2025 TinyLeaf Co. All rights reserved.',
+    },
   ],
   hooks: {
     afterChange: [revalidateFooter],

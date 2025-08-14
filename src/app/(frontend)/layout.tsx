@@ -44,16 +44,42 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
+  title: {
+    default: 'Tiny Leaf Co. - Handcrafted Home Décor Planters & Accessories',
+    template: '%s | Tiny Leaf Co.',
+  },
+  description: 'Discover artistic terracotta and waterproof planters by Tiny Leaf Co. Handcrafted decorative planters with animal, spiritual, and cartoon themes. Perfect for enhancing your home with meaningful and beautiful plant accessories.',
+  keywords: 'planters, home decor, terracotta, handcrafted, artistic, symbolic, Buddha pot, elephant planter, spiritual decor, waterproof planters, handmade, creative design, home accessories',
+  authors: [{ name: 'Tiny Leaf Co.' }],
+  creator: 'Tiny Leaf Co.',
+  publisher: 'Tiny Leaf Co.',
   metadataBase: new URL(getServerSideURL()),
   openGraph: mergeOpenGraph({
+    title: 'Tiny Leaf Co. - Handcrafted Home Décor Planters & Accessories',
+    description: 'Discover artistic terracotta and waterproof planters. Handcrafted decorative planters with animal, spiritual, and cartoon themes.',
+    siteName: 'Tiny Leaf Co.',
     images: [
       {
         url: '/tiny-wordmark.png',
+        alt: 'Tiny Leaf Co. - Handcrafted Planters',
       },
     ],
   }),
   twitter: {
     card: 'summary_large_image',
+    title: 'Tiny Leaf Co. - Handcrafted Home Décor Planters',
+    description: 'Discover artistic terracotta and waterproof planters. Handcrafted decorative planters with unique themes.',
     creator: '@tinyleaf',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
